@@ -1,0 +1,477 @@
+
+// variables for background colour, font-family, font size and font colour
+$primary-background: white;
+$secondary-background: #adb5bd;
+
+$nav-font-size: 17px;
+$brand-font-size: 28px;
+$nav-font-family: "Poppins Light",
+sans-serif;
+
+$main-font-color: #fffffffa;
+$secondary-font-color: rgb(0, 0, 0);
+
+$body-font-family: "Ubuntu",
+sans-serif;
+
+$bodyTitle-font-size: 32px;
+
+$body-font-size: 18px;
+
+$credit-font-size: 11px;
+
+$blog-background-color: rgb(230, 222, 222);
+
+// Mixins have been used to build and style the different components
+
+// nav component 
+@mixin nav() {
+
+    .nav {
+        padding: 2vw;
+        overflow: hidden;
+        font-family: $nav-font-family;
+        font-size: $nav-font-size;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: $main-font-color;
+        padding: 10px 20px;
+        border-radius: 5px;
+
+    }
+
+    .nav .brand {
+        font-size: $brand-font-size;
+        padding: 10px 20px;
+    }
+
+    .nav-list {
+        list-style-type: none;
+    }
+
+}
+
+// footer component
+@mixin foot() {
+
+    background: $secondary-background;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .credit {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .credit a {
+        color: $secondary-font-color;
+        font-family: $nav-font-family;
+        font-size: $credit-font-size;
+        text-decoration: none;
+    }
+
+    .name {
+        color: $secondary-font-color;
+        font-family: $nav-font-family;
+
+    }
+
+    .contact-icon a {
+        text-decoration: none;
+        color: $secondary-font-color;
+        padding: 5px 10px;
+    }
+
+}
+
+// page title component
+@mixin pTitle() {
+    text-align: center;
+    overflow: inherit;
+    margin-top: 3vw;
+
+    h2 {
+        font-family: $nav-font-family;
+        font-weight: lighter;
+        color: $main-font-color;
+        font-size: $bodyTitle-font-size;
+        margin: 2vw 0;
+    }
+}
+
+// standard image component
+@mixin standImage() {
+    .image {
+        width: 100%;
+        height: 350px;
+        margin: 3vh 0;
+        border: 1px solid $secondary-background;
+        box-shadow: 5px 5px $secondary-background;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: $primary-background;
+
+    }
+
+    .image img {
+
+        max-width: 100%;
+        height: auto;
+
+    }
+}
+
+
+// standard text component
+
+@mixin standText() {
+    .text {
+
+        font-family: $body-font-family;
+        font-size: $body-font-size;
+        color: $main-font-color;
+        text-align: justify;
+    }
+
+    .contact-icon {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+
+        a {
+            color: $secondary-font-color;
+            font-size: 40px;
+            text-decoration: none;
+        }
+    }
+
+    .text-cont {
+        text-align: center;
+        color: $main-font-color;
+        font-size: $body-font-size;
+        font-family: $body-font-family;
+
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
+
+// The mixins and other styles are applied below
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    // background-color: $primary-background;
+    background-image: url(./resources/background_img.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+
+}
+
+main {
+
+    height: 90vh;
+    overflow: auto;
+    margin: 3vw;
+
+}
+
+header {
+    @include nav;
+}
+
+footer {
+    @include foot;
+
+}
+
+.page-title {
+    @include pTitle;
+}
+
+
+// Standard container - applies to all pages but the blog page
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    .standard-container {
+
+        width: 350px;
+    }
+
+    a {
+        text-decoration: none
+    }
+
+    @include standImage;
+
+    @include standText;
+
+}
+
+// Resume button styling
+.resume {
+    text-align: center;
+    margin: 4vw;
+
+    button {
+        display: inline-block;
+        background-color: gray;
+        color: $primary-background;
+        text-transform: none;
+        font-family: $body-font-family;
+        font-size: $body-font-size;
+        font-weight: bold;
+        border: none;
+        padding: 15px 32px;
+        border-radius: 6px;
+        transition: 2s;
+    }
+
+    button:hover {
+        background-color: $secondary-background;
+    }
+}
+
+// Styling of the internal parts of the blog page is unique. Standard image and standard text components are not used for this page.
+
+.blog-background {
+    background-color: $blog-background-color;
+    overflow: inherit;
+}
+
+.blog-wrap {
+
+    padding: 2vh;
+
+    h2,
+    h5,
+    p {
+        font-family: $body-font-family;
+        padding: 1vh;
+        color: $secondary-font-color;
+    }
+
+
+
+}
+
+.blog-title {
+    text-align: center;
+    padding: 5vw;
+    margin: 2vw;
+    background-color: $primary-background;
+    border-radius: 10px;
+
+    h2 {
+        font-family: $body-font-family;
+        color: $secondary-font-color;
+        font-size: $bodyTitle-font-size;
+
+    }
+}
+
+// add these to a media query
+.blog-list-wrap {
+    float: right;
+    width: 40%;
+    background-color: inherit;
+
+}
+
+.blog-post-wrap {
+    float: left;
+    width: 60%;
+    background-color: inherit;
+}
+
+
+.blog-list,
+.blog-post {
+
+    padding: 3vw;
+    margin: 2vw;
+    border-radius: 10px;
+    background-color: $primary-background;
+
+     a{
+        text-decoration: none;
+     }   
+    span {
+        font-weight: bold;
+    }
+}
+
+.blog-image {
+    width: 350px;
+    height: 218.75px;
+    margin: 1vh 0;
+    border: 1px solid $secondary-background;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+// All media queries are listed below
+
+// Make nav bar responsive
+
+@media only screen and (min-width: 1200px) {
+
+    .nav-list {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .nav-list li:last-child {
+        display: none;
+    }
+
+
+}
+
+@media only screen and (max-width: 1200px) {
+    // css used when the hamburger is toggled
+    // Note: .response class is added interactively by clicking on the hamburger.
+    // This is done using the javascript - refer to script tags at the bottom of each page
+
+    // show the hamburger by default
+    .nav-list li:not(:last-child) {
+        display: none;
+    }
+
+    // size the hamburger to be the same as the brand text
+    .nav .icon {
+        font-size: $brand-font-size;
+    }
+
+    .nav.response {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .nav.response .icon {
+        position: absolute;
+        right: 6px;
+        top: 6px;
+    }
+
+    .nav.response li {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+}
+
+// make footer responsive
+
+
+
+@media only screen and (min-width: 768px) {
+
+    .name {
+        font-size: $nav-font-size;
+    }
+
+    .contact-icon {
+        display: flex;
+        flex-direction: row;
+    }
+
+
+}
+
+@media only screen and (max-width: 768px) {
+
+
+    .name {
+        font-size: 14px;
+    }
+
+    .contact-icon {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}
+
+
+// make blog page responsive
+
+
+@media only screen and (max-width: 1200px) {
+
+ // Reduce the size of the image and maintain aspect ratio
+ .blog-image {
+    width: 310px;
+    height: 193.75px;
+    margin: 1vh 0;
+    border: 1px solid $secondary-background;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+}
+
+
+@media only screen and (max-width: 768px) {
+    // change the width of both containers
+    .blog-list-wrap,
+    .blog-post-wrap {
+        width: 100%;
+
+    }
+    // Reduce the size of the image and maintain aspect ratio
+    .blog-image {
+        width: 290px;
+        height: 181.25px;
+        margin: 1vh 0;
+        border: 1px solid $secondary-background;
+    
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
